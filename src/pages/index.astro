@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const appStoreUrl = "https://apps.apple.com/us/app/neon-ninja-run/id6766583123";
+
+const chapters = [
+  {
+    name: "Neon City",
+    image: "neon-city.png",
+    kicker: "Rain, signs, rooftop pressure",
+    text: "Start inside the electric skyline: parry close calls, chain attacks, and stay ahead of the city."
+  },
+  {
+    name: "Frozen Tundra",
+    image: "frozen-tundra.png",
+    kicker: "Ice, spikes, bright hazards",
+    text: "Launch through crystalline lanes where timing and jump control matter more than raw speed."
+  },
+  {
+    name: "Storm Nexus",
+    image: "storm-nexus.png",
+    kicker: "Weather chaos, precision runs",
+    text: "Push through heavy storms, glowing pickups, and sudden danger while building combo momentum."
+  },
+  {
+    name: "Sakura Gardens",
+    image: "sakura-gardens.png",
+    kicker: "Boss pressure, petals, rituals",
+    text: "Face a calmer world with sharper threats, from blossom storms to armored guardians."
+  },
+  {
+    name: "Nexus Prime",
+    image: "nexus-prime.png",
+    kicker: "Final light, high speed, finishers",
+    text: "The run becomes a spectacle of light, enemies, powers, and decisive late-run moments."
+  }
+];
+
+const modes = [
+  ["Story Chapters", "Progress through Kira's world, unlock lore, and complete chapter objectives."],
+  ["Quick Play", "Jump into a fast run with upgrades, cosmetics, and your best reflexes."],
+  ["Time Attack", "Race courses like Sprint 100 and push clean execution for faster clears."],
+  ["Survival", "Hold the line through waves, hazards, and escalating pressure."],
+  ["Run Modifiers", "Add extra challenge for bigger rewards and harder runs."],
+  ["Game Center", "Climb leaderboards and chase eight achievements."],
+];
+---
+
+<BaseLayout title="Neon Ninja Run — Fast Action Arcade Runner">
+  <section class="hero hero--home">
+    <picture class="hero-media" aria-hidden="true">
+      <img src={`${base}images/neon-city.png`} alt="" />
+    </picture>
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow">Landscape arcade runner for iPhone and iPad</p>
+      <h1>Neon Ninja Run</h1>
+      <p class="hero-copy">Dash as Kira through neon worlds, parry enemies at the last second, defeat bosses, and unlock premium skins, trails, kill effects, titles, and sound packs.</p>
+      <div class="hero-actions">
+        <a class="store-badge" href={appStoreUrl} target="_blank" rel="noopener">
+          <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store" />
+        </a>
+        <a class="button button--ghost" href="#chapters">See the worlds</a>
+      </div>
+    </div>
+    <div class="hero-stats" aria-label="Game highlights">
+      <span>Parry combat</span>
+      <span>Boss chapters</span>
+      <span>Offline-friendly</span>
+    </div>
+  </section>
+
+  <section class="section intro-band">
+    <div class="section-heading">
+      <p class="eyebrow">Built for fast sessions</p>
+      <h2>One thumb on survival, one eye on the next threat.</h2>
+    </div>
+    <div class="feature-strip">
+      <article>
+        <strong>Reactive combat</strong>
+        <span>Attack, parry, combo, and trigger special abilities when the screen gets wild.</span>
+      </article>
+      <article>
+        <strong>Progress that shows</strong>
+        <span>Upgrade Kira, earn rewards, unlock cosmetics, and make every run look different.</span>
+      </article>
+      <article>
+        <strong>Arcade variety</strong>
+        <span>Story chapters, Quick Play, Time Attack, Survival, weekly events, and modifiers.</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="section chapter-showcase" id="chapters">
+    <div class="section-heading">
+      <p class="eyebrow">Five worlds, five moods</p>
+      <h2>Every chapter should feel like a different run.</h2>
+    </div>
+    <div class="chapter-grid">
+      {chapters.map((chapter, index) => (
+        <article class={`chapter-card chapter-card--${index + 1}`}>
+          <img src={`${base}images/${chapter.image}`} alt={`${chapter.name} gameplay screenshot`} loading={index > 1 ? "lazy" : "eager"} />
+          <div>
+            <p>{chapter.kicker}</p>
+            <h3>{chapter.name}</h3>
+            <span>{chapter.text}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section mode-section" id="modes">
+    <div class="section-heading">
+      <p class="eyebrow">Modes and progression</p>
+      <h2>Runs stay short. Mastery does not.</h2>
+    </div>
+    <div class="mode-grid">
+      {modes.map(([title, text]) => (
+        <article class="mode-card">
+          <h3>{title}</h3>
+          <p>{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section cosmetic-section">
+    <div class="wide-panel">
+      <div>
+        <p class="eyebrow">Premium cosmetics</p>
+        <h2>Make Kira’s run yours.</h2>
+        <p>Collect skins, trails, kill effects, emotes, titles, and sound packs. The premium shop is built around visible style, not hidden stats.</p>
+      </div>
+      <div class="cosmetic-list" aria-label="Cosmetic categories">
+        <span>Skins</span>
+        <span>Trails</span>
+        <span>Kill Effects</span>
+        <span>Emotes</span>
+        <span>Titles</span>
+        <span>Sound Packs</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="cta-content">
+      <p class="eyebrow">Ready to run?</p>
+      <h2>Step into the neon and chase your cleanest run.</h2>
+      <a class="store-badge" href={appStoreUrl} target="_blank" rel="noopener">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store" />
+      </a>
+    </div>
+  </section>
+</BaseLayout>

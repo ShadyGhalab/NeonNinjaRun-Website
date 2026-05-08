@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Neon Ninja Run is a fast landscape arcade runner starring Kira, with neon chapters, parry combat, boss fights, premium cosmetics, Game Center achievements, and offline-friendly play."
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const appStoreUrl = "https://apps.apple.com/us/app/neon-ninja-run/id6766583123";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#060711" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={`${base}images/neon-city.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href={`${base}images/app-icon.png`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="brand" href={`${base}`}>
+        <img src={`${base}images/app-icon.png`} alt="" width="36" height="36" />
+        <span>Neon Ninja Run</span>
+      </a>
+      <div class="nav-links">
+        <a href={`${base}#chapters`}>Chapters</a>
+        <a href={`${base}#modes`}>Modes</a>
+        <a href={`${base}support/`}>Support</a>
+        <a class="nav-cta" href={appStoreUrl} target="_blank" rel="noopener">App Store</a>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Neon Ninja Run</strong>
+        <p>Fast action arcade running in neon worlds.</p>
+      </div>
+      <div class="footer-links">
+        <a href={`${base}support/`}>Support</a>
+        <a href={`${base}privacy/`}>Privacy</a>
+        <a href={`${base}terms/`}>Terms</a>
+        <a href={appStoreUrl} target="_blank" rel="noopener">App Store</a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>
