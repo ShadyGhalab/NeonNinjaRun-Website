@@ -2,14 +2,19 @@
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title,
-  description = "Neon Ninja Run is a fast landscape arcade runner starring Kira, with neon chapters, parry combat, boss fights, premium cosmetics, Game Center achievements, and offline-friendly play."
+  description = "Neon Ninja Run is a fast landscape arcade runner starring Kira, with neon chapters, parry combat, boss fights, premium cosmetics, Game Center achievements, and offline-friendly play.",
+  image = "images/neon-city.png"
 } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
+const siteUrl = "https://neonninjarun.com";
+const canonicalUrl = `${siteUrl}${Astro.url.pathname}`;
+const shareImageUrl = `${siteUrl}/${image}`;
 const appStoreUrl = "https://apps.apple.com/us/app/neon-ninja-run/id6766583123";
 ---
 
@@ -20,11 +25,20 @@ const appStoreUrl = "https://apps.apple.com/us/app/neon-ninja-run/id6766583123";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#060711" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="apple-itunes-app" content="app-id=6766583123" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={`${base}images/neon-city.png`} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="Neon Ninja Run" />
+    <meta property="og:image" content={shareImageUrl} />
+    <meta property="og:image:width" content="2868" />
+    <meta property="og:image:height" content="1320" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImageUrl} />
     <link rel="icon" type="image/png" href={`${base}images/app-icon.png`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
